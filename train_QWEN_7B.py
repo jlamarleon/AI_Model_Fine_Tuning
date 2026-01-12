@@ -10,7 +10,7 @@ Key features:
 - BF16 training
 - JSON instruction-style dataset
 
-Author: (you)
+Author: ( Javier Lamar Leon )
 """
 
 # ===============================
