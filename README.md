@@ -1,14 +1,15 @@
 ## 📌 **Project Overview**
-This project implements a fine-tuning pipeline for **Qwen Large Language Models** using the **Milvus dataset** within the scope of the **TRIALS READY** project. It serves as a **Proof of Concept (PoC)** to evaluate the feasibility of applying LLMs to automate the generation of **clinical trial eligibility criteria**, a critical and resource-intensive stage of clinical trial design. By delivering a functional end-to-end pipeline, the project provides an initial validation of AI-driven approaches for improving efficiency and consistency across Clinical Trial Units (CTUs).
+This project implements a fine-tuning pipeline for **Qwen Large Language Models** using **LoRA** on the **Milvus dataset** within the scope of the **TRIALS READY** project. It serves as a **Proof of Concept (PoC)** to evaluate the feasibility of applying **parameter-efficient fine-tuning** with LLMs to automate the generation of **clinical trial eligibility criteria**, a critical and resource-intensive stage of trial design. By delivering a functional end-to-end pipeline, the project provides an initial validation of AI-driven approaches for improving efficiency and consistency across Clinical Trial Units (CTUs).
 
 ---
 
 ## 📌 **Project Goal**
-The goal of this project is to **design, implement, and validate a PoC** demonstrating that Qwen models can be effectively fine-tuned on clinical trial data to support the automated generation of eligibility criteria. The project aims to:
-- Validate the technical feasibility of adapting Qwen models using the Milvus dataset  
-- Build a reproducible fine-tuning and inference pipeline  
+The goal of this project is to **design, implement, and validate a PoC** demonstrating that **Qwen models can be efficiently fine-tuned using LoRA** on clinical trial data to support the automated generation of eligibility criteria. The project aims to:
+- Validate the technical feasibility of adapting Qwen models with LoRA using the Milvus dataset  
+- Build a reproducible **LoRA-based fine-tuning and inference pipeline**  
 - Assess the potential impact of LLMs on reducing manual workload and cognitive effort in protocol development  
-- Establish a technical foundation for future scalable AI solutions within the TRIALS READY framework
+- Establish a technical foundation for future **scalable AI solutions** within the TRIALS READY framework
+
 
 
 ## 🧠 **Foundations and Research Direction**
