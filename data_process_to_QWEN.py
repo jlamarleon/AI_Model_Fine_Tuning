@@ -1,4 +1,4 @@
-# This code is an example to convert from a JSON dataset (name and URL) to structured data input for Qwen 7B.
+# This code is an example to convert from the alpaca JSON dataset (https://huggingface.co/datasets/tatsu-lab/alpaca) to structured data input for Qwen 7B.
 # It processes instruction-based JSON data, converts it to a chat format, splits it into train/eval sets,
 # and ensures all assistant outputs have at least one token.
 
