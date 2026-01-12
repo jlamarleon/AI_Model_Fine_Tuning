@@ -28,7 +28,7 @@ export TRANSFORMERS_NO_ADVISORY_WARNINGS=true
 # Paths
 # ============================
 # Path to the training script
-TRAIN_SCRIPT="__PATH_TO___/train_QWEN_7B.py"
+TRAIN_SCRIPT="__FULL_PATH_TO___/train_QWEN_7B.py"
 
 # Path to the pre-trained Qwen-VL-7B model cache
 CACHE_DIR="/data/hpcadmin/llm_models/Qwen2_VL/7B_instruct"
