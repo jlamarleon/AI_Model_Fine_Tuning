@@ -11,7 +11,6 @@ The goal of this project is to **design, implement, and validate a PoC** demonst
 - Establish a technical foundation for future **scalable AI solutions** within the TRIALS READY framework
 
 
-
 ## 🧠 **Foundations and Research Direction**
 
 ### **Learning LoRA and Transformers for Controlled Experiments**
@@ -35,34 +34,29 @@ Before any experimental training begins, the student must:
    - Understand how LoRA modifies weight updates during fine-tuning  
    - Develop intuition for why low-rank adaptation can be effective  
 
-3. **Form Hypotheses on LoRA Placement**
-   - Hypothesize where LoRA should be applied (e.g., attention projections, feed-forward layers)  
-   - Reason about expected effects on learning dynamics and representational capacity  
-   - Clearly state assumptions behind each hypothesis  
-
-4. **Design Controlled Experiments**
-   - Design experiments to validate or refute the proposed hypotheses   
-   - Define controlled variables (e.g., rank, target modules, dataset size)  
-   - Focus on interpretability and insight rather than benchmark optimization  
 
 #### **Outcome of This Phase**
 By the end of this stage, the student should have produced:
 
-- **A comprehensive written report**, comparable in scope and rigor to a *state-of-the-art review*, covering:
-  - Transformer architectures relevant to LLMs, including architectural variations and design trade-offs  
-  - Parameter-efficient fine-tuning methods, with a strong focus on LoRA and related approaches  
-  - Existing applications of LLMs in medical question answering, including performance, limitations, and domain-specific challenges  
-  - An extensive bibliographic survey of the most influential literature on LoRA, identifying key contributions, prevailing trends, and open research gaps  
-  - A systematic justification for the selection of one or more base models (e.g., in the ~7B parameter range), supported by:
-    - Computational feasibility and resource constraints  
-    - Suitability for medical question-answering tasks  
-    - Evidence from prior benchmarks and empirical studies  
-    - Compatibility with LoRA-based adaptation strategies  
+- **A comprehensive written report**, comparable in scope and rigor to a *state-of-the-art review*, including:
 
-- **A documented rationale for experimental configurations**, explaining and motivating:
-  - The chosen model size(s) (e.g., ~7B parameters)  
-  - The selected LoRA configurations and target modules  
-  - How these choices align with findings from the literature and the stated research hypotheses  
+  - Detailed analysis of **Transformer architectures** relevant to LLMs, with emphasis on design considerations for **parameter-efficient adaptation using LoRA**  
+  - Overview of **parameter-efficient fine-tuning methods**, focusing on LoRA and the use of **predefined or reusable LoRA matrices** for controlled experimentation  
+  - Survey of **applications of LLMs in clinical trial tasks**, particularly automated generation of eligibility criteria, highlighting performance, limitations, and regulatory considerations  
+  - Extensive bibliographic review of **key literature on LoRA and LLMs in clinical research**, identifying seminal contributions, trends, and open research questions  
+  - Systematic **justification for the selection of base model(s)** (e.g., Qwen models in the ~7B parameter range), based on:
+    - Computational feasibility and memory constraints  
+    - Suitability for clinical trial document generation tasks  
+    - Evidence from prior benchmarks and empirical studies  
+    - Compatibility with **LoRA-based fine-tuning** and the selected set of matrices  
+
+- **A documented rationale for experimental configurations**, providing a reproducible plan, including:
+
+  - Choice of **model size(s)** and reasoning for selecting smaller-scale LLMs to optimize efficiency  
+  - Selection of **LoRA configurations** from the predefined matrix set, including target modules and hyperparameters  
+  - Alignment of the experimental design with literature findings, clinical trial requirements, and stated research hypotheses  
+  - Criteria for evaluating and comparing configurations to ensure **technical feasibility, reproducibility, and regulatory-compliant outputs**  
+ 
  
 - **A conceptual baseline document** that will:
   - Serve as the foundation for the **first chapters of the master’s thesis**  
