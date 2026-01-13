@@ -1,4 +1,4 @@
-# 🛠 nstallation Guide for Fine-Tuning LLMs with LoRA
+# 🛠 Installation Guide for Fine-Tuning LLMs with LoRA
 
 This guide explains how to set up a Python environment for fine-tuning large language models (LLMs) using LoRA (Low-Rank Adaptation) adapters.
 
@@ -55,7 +55,9 @@ pip install --upgrade pip==22.0.2
 These are required for the main workflow:
 
 ```bash
-pip install torch==2.4.0 \
+pip install Pillow \
+            tqdm \
+            torch==2.4.0 \
             torchvision==0.19.0 \
             transformers==4.55.0 \
             tokenizers==0.21.4 \
