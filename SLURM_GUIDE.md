@@ -1,11 +1,13 @@
 # 🧵 SLURM Guide — Running Jobs with `script_train_qwen.sh`
 
-This guide explains how to submit and manage jobs on an HPC cluster using **SLURM**, where **all project files are located in the same root directory**, and **training/evaluation data is stored inside a `data/` subdirectory**.  
-The setup is designed for **LoRA-based fine-tuning of the Qwen 7B model** in the context of clinical trial–related tasks.
+This document describes how to submit, monitor, and manage SLURM jobs for **LoRA-based fine-tuning of Qwen 7B models**.  
+It is intended for **master thesis experiments and Proofs of Concept** within the clinical trial domain.
+
+All project files are assumed to be located in a **single project directory**, with datasets stored under a dedicated `data/` subdirectory.
 
 ---
 
-## 📁 Directory Structure
+## 📁 Project Directory Structure
 
 ```text
 project/
@@ -13,16 +15,19 @@ project/
 ├── train_QWEN_7B.py
 ├── data/
 │   ├── train_alpaca.json
-│   └── eval_alpaca.json
+│   ├── eval_alpaca.json
+│   └── lora_saved/
+│       └── 7B_instruct/
 ├── slurm-%j.out
 └── SLURM_GUIDE.md
 ```
 
 ---
 
-## ⚠️ Important: Working Directory Requirement
+## ⚠️ Mandatory Step: Change to Project Directory
 
-Before submitting a SLURM job, **you must change into the project directory**.
+Before submitting any SLURM job, you **must** move to the project root directory.  
+This ensures that all relative paths resolve correctly.
 
 ```bash
 cd /path/to/project
@@ -32,6 +37,9 @@ cd /path/to/project
 
 ## 📝 SLURM Submission Script  
 ### `script_train_qwen.sh`
+
+The following script launches a **single-GPU LoRA fine-tuning job** for Qwen 7B.  
+Standard output and error logs are written to the **same file** (`slurm-%j.out`).
 
 ```bash
 #!/bin/bash
@@ -45,6 +53,9 @@ cd /path/to/project
 #SBATCH --mem=122000
 #SBATCH --cpus-per-task=32
 
+# ============================
+# Environment setup
+# ============================
 source ___directory_path_to_installed_python_environment_envthesis__/bin/activate
 unset LOCAL_RANK
 
@@ -54,12 +65,24 @@ export HF_HUB_ENABLE_HF_TRANSFER=0
 export PYTHONWARNINGS=ignore
 export TRANSFORMERS_NO_ADVISORY_WARNINGS=true
 
+# Optional (use if fragmentation occurs)
+# export PYTORCH_CUDA_ALLOC_CONF=expandable_segments:True
+
+# ============================
+# Paths
+# ============================
 TRAIN_SCRIPT="__PATH_TO__/train_QWEN_7B.py"
+
 CACHE_DIR="/data/hpcadmin/llm_models/Qwen2_VL/7B_instruct"
+
 TRAIN_JSON="__PATH_TO__/data/train_alpaca.json"
 EVAL_JSON="__PATH_TO__/data/eval_alpaca.json"
+
 OUTPUT_DIR="__PATH_TO__/data/lora_saved/7B_instruct"
 
+# ============================
+# Hyperparameters
+# ============================
 LR="3e-6"
 BATCH_SIZE=5
 BATCH_SIZE_EVAL=10
@@ -70,6 +93,9 @@ LORA_R=128
 LORA_ALPHA=32
 LORA_DROPOUT=0.1
 
+# ============================
+# Launch training
+# ============================
 python3 -u ${TRAIN_SCRIPT} \
   --train_json ${TRAIN_JSON} \
   --eval_json ${EVAL_JSON} \
@@ -87,21 +113,88 @@ python3 -u ${TRAIN_SCRIPT} \
 deactivate
 ```
 
+Make the script executable:
+```bash
+chmod +x script_train_qwen.sh
+```
+
 ---
 
 ## 🚀 Submitting a Job
 
+From inside the project directory:
+
 ```bash
-cd /path/to/project
 sbatch script_train_qwen.sh
+```
+
+After submission, SLURM will return a **Job ID**.
+
+---
+
+## 📊 Monitoring Jobs
+
+View active jobs:
+```bash
+squeue -u $USER
+```
+
+Inspect a specific job:
+```bash
+scontrol show job <JOB_ID>
+```
+
+Check resource usage after completion:
+```bash
+sacct -j <JOB_ID>
 ```
 
 ---
 
-## 📄 Logs
+## 📄 Logs and Outputs
 
-All output and errors are written to:
+All runtime logs (stdout + stderr) are written to:
 
 ```text
 slurm-<JOB_ID>.out
 ```
+
+Inspect logs in real time:
+```bash
+tail -f slurm-<JOB_ID>.out
+```
+
+---
+
+## 🛑 Cancelling a Job
+
+```bash
+scancel <JOB_ID>
+```
+
+---
+
+## 🧠 Best Practices
+
+- Always submit jobs from the **project root directory**
+- Keep raw datasets immutable inside `data/`
+- Log hyperparameters and experiment metadata
+- Start with short test runs before long jobs
+- Avoid over-requesting GPU memory and time
+- Version-control SLURM scripts and training code
+
+---
+
+## 📚 Common SLURM Commands
+
+| Command | Description |
+|------|------------|
+| `sbatch script_train_qwen.sh` | Submit job |
+| `squeue -u $USER` | List active jobs |
+| `scancel JOBID` | Cancel job |
+| `sinfo` | Cluster status |
+| `sacct -j JOBID` | Job statistics |
+
+---
+
+This guide provides a **minimal, robust SLURM workflow** suitable for **Qwen 7B + LoRA experiments** in a master thesis or research PoC setting.
