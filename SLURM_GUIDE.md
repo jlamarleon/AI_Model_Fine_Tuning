@@ -198,3 +198,9 @@ scancel <JOB_ID>
 ---
 
 This guide provides a **minimal, robust SLURM workflow** suitable for **Qwen 7B + LoRA experiments** in a master thesis or research PoC setting.
+
+> **Important Note:**  
+> All data used in this project **must be stored in a dedicated directory on the GPU cluster**:  
+> `/data/#USER/` (where `#USER` is your cluster username).  
+> The `project/data/` folder included in the repository contains **example data only** and should be **deleted after setup** to avoid confusion.  
+> Always work with your actual training and evaluation datasets under `/data/#USER/`.
