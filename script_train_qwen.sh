@@ -56,6 +56,7 @@ LORA_DROPOUT=0.1                     # LoRA dropout: fraction of neurons randoml
 # Launch training
 # ============================
 python3 -u ${TRAIN_SCRIPT} \
+  --model_id ${MODEL_ID} \
   --train_json ${TRAIN_JSON} \
   --eval_json ${EVAL_JSON} \
   --output_dir ${OUTPUT_DIR} \
