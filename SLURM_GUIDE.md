@@ -71,14 +71,16 @@ export TRANSFORMERS_NO_ADVISORY_WARNINGS=true
 # ============================
 # Paths
 # ============================
-TRAIN_SCRIPT="__PATH_TO__/train_QWEN_7B.py"
+# Path to the training script
+TRAIN_SCRIPT="__FULL_PATH_TO___/train_QWEN_7B.py"
 
+# Path to the pre-trained Qwen-VL-7B model cache
 CACHE_DIR="/data/hpcadmin/llm_models/Qwen2_VL/7B_instruct"
-
-TRAIN_JSON="__PATH_TO__/data/train_alpaca.json"
-EVAL_JSON="__PATH_TO__/data/eval_alpaca.json"
-
-OUTPUT_DIR="__PATH_TO__/data/lora_saved/7B_instruct"
+# Paths to training and evaluation data
+TRAIN_JSON="__PATH_to__data__/train_alpaca.json"
+EVAL_JSON="__PATH_to__data__/eval_alpaca.json"
+# Output directory for the LoRA matrix saved
+OUTPUT_DIR="__PATH_to__data__/lora_saved/7B_instruct"
 
 # ============================
 # Hyperparameters
