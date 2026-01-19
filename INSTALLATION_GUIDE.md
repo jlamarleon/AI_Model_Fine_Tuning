@@ -6,8 +6,6 @@ This guide explains how to set up a Python environment for fine-tuning large lan
 
 ## 1️⃣ Prerequisites
 
-* **Python 3.10+** (3.10 recommended)
-* **CUDA-compatible GPU** (for training large models)
 * **Basic familiarity with Python virtual environments**
 
 ---

@@ -41,15 +41,16 @@ OUTPUT_DIR="__PATH_to__data__/lora_saved/7B_instruct"
 # ============================
 # Hyperparameters
 # ============================
-LR="3e-6"
-BATCH_SIZE=5
-BATCH_SIZE_EVAL=10
-EPOCHS=5
-MAX_LENGTH=1024
+MODEL_ID="Qwen/Qwen2-7B-Instruct"    # Hugging Face model identifier: specifies the exact name-model to download from Hugging Face Hub
+LR="3e-6"                            # Learning rate: controls how much the model weights are updated during training
+BATCH_SIZE=5                         # Batch size for training: number of samples processed before the model is updated
+BATCH_SIZE_EVAL=10                   # Batch size for evaluation: number of samples processed during validation/testing
+EPOCHS=10                            # Number of epochs: how many times the model will iterate over the entire training dataset
+MAX_LENGTH=1024                      # Maximum sequence length: limits the number of tokens in input/output sequences
 
-LORA_R=128
-LORA_ALPHA=32
-LORA_DROPOUT=0.1
+LORA_R=128                           # LoRA rank: dimensionality of the low-rank matrices used in LoRA adaptation
+LORA_ALPHA=32                        # LoRA alpha: scaling factor for the LoRA weights
+LORA_DROPOUT=0.1                     # LoRA dropout: fraction of neurons randomly dropped during training to prevent overfitting
 
 # ============================
 # Launch training
