@@ -216,7 +216,7 @@ def main():
         lora_dropout=args.lora_dropout,  # Dropout rate for LoRA layers
         bias="none",  # Do not apply LoRA to bias terms
         task_type="CAUSAL_LM",  # Task type for causal language modeling
-        target_modules="all-linear",  # Apply LoRA to all linear layers
+        target_modules="all-linear", # Apply LoRA to all linear layers, and to apply to query, key, value and output projection maybe you can use like guide  ".*(q_proj|k_proj|v_proj|o_proj)$" 
     )
 
     model.gradient_checkpointing_enable()  # Enable gradient checkpointing to save memory
